@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Travello - Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- post to same URL; or use {% url 'register' %} -->
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="first_name" placeholder="First name" value="{{ request.POST.first_name }}"><br>
+        <input type="text" name="last_name"  placeholder="Last name"  value="{{ request.POST.last_name }}"><br>
+        <input type="text" name="username"   placeholder="Username"   value="{{ request.POST.username }}"><br>
+        <input type="email" name="email"      placeholder="Email"      value="{{ request.POST.email }}"><br>
+        <input type="password" name="password1" placeholder="Password"><br>
+        <input type="password" name="password2" placeholder="Confirm Password"><br>
+
+        <input type="submit" value="Register"><br>
+    </form>
+
+    <!-- messages -->
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
